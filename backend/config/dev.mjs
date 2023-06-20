@@ -1,4 +1,4 @@
 export default  {
-  dbURL: 'mongodb://127.0.0.1:27017',
-  dbName : 'tester_db'
+  dbURL: 'mongodb+srv://tomerbenaim1:tomer10@interview.2k1s0am.mongodb.net/?retryWrites=true&w=majority',
+  dbName : 'interview'
 }
