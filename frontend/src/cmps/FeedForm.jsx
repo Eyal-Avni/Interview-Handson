@@ -1,20 +1,18 @@
 import { useRef } from 'react'
-// import { useSelector } from 'react-redux'
 import { addComment } from '../store/comment.actions.js'
+import { MD5 } from 'crypto-js'
 
 export function FeedForm() {
-    // const comments = useSelector((storeState) => storeState.carModule.cars)
-
     const mailRef = useRef(null)
     const msgRef = useRef(null)
 
     async function hadleSubmit(ev) {
         ev.preventDefault()
-        console.log(mailRef.current.value)
-        console.log(msgRef.current.value)
+        const hashedEmail = MD5(mailRef.current.value).toString()
         const currComment = {
             mail: mailRef.current.value,
             msg: msgRef.current.value,
+            imgUrl: `https://www.gravatar.com/avatar/${hashedEmail}`,
         }
         try {
             await addComment(currComment)

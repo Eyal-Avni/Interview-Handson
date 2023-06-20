@@ -10,7 +10,7 @@ export const commentService = {
 function query(filterBy) {
     var queryStr = !filterBy ? '' : `?name=${filterBy.name}&sort=anaAref`
     // return httpService.get(`Comment${queryStr}`)
-    return storageService.query('Comment')
+    return storageService.query('comment')
 }
 
 // async function remove(CommentId) {
