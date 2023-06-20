@@ -6,7 +6,7 @@ import {addComment, getComments, deleteComment} from './comment.controller.mjs'
 const router = express.Router()
 
 router.get('/', log, getComments)
-router.post('/',  log, requireAuth, addComment)
-router.delete('/:id',  requireAuth, deleteComment)
+router.post('/',  log, addComment)
+router.delete('/:id', deleteComment)
 
 export const commentRoutes = router

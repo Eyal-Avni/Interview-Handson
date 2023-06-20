@@ -8,9 +8,9 @@ export const commentService = {
 }
 
 function query(filterBy) {
-    var queryStr = !filterBy ? '' : `?name=${filterBy.name}&sort=anaAref`
-    // return httpService.get(`Comment${queryStr}`)
-    return storageService.query('comment')
+    // var queryStr = !filterBy ? '' : `?name=${filterBy.name}&sort=anaAref`
+    return httpService.get(`comment`)
+    // return storageService.query('comment')
 }
 
 // async function remove(CommentId) {
@@ -19,9 +19,10 @@ function query(filterBy) {
 // }
 
 async function add(comment) {
-    console.log(comment)
     try {
-        await storageService.post('comment', comment)
+        // await storageService.post('comment', comment)
+        console.log('comment from service: ', comment )
+        await httpService.post(`comment`, comment)
         return comment
     } catch (error) {
         console.log(error)

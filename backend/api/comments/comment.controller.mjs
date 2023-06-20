@@ -33,9 +33,8 @@ export async function addComment(req, res) {
     try {
         var comment = req.body
         comment = await commentService.add(comment)
-        socketService.broadcast({type: 'comment-added', data: comment})
+        // socketService.broadcast({type: 'comment-added', data: comment})
         res.send(comment)
-
     } catch (err) {
         logger.error('Failed to add comment', err)
         res.status(400).send({ err: 'Failed to add comment' })

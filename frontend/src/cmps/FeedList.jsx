@@ -1,6 +1,7 @@
 import { useSelector } from 'react-redux'
 import { useEffect } from 'react'
 import { loadComments } from '../store/comment.actions.js'
+import { utilService } from '../services/util.service.js'
 
 export function FeedList() {
     const comments = useSelector(
@@ -19,12 +20,13 @@ export function FeedList() {
             console.log('Cannot load commnts')
         }
     }
+    
 
     return (
         <div className="feed-list-container">
             <ul className="comment-list">
                 {comments.map((comment) => (
-                    <li className="comment-preview" key={comment._id}>
+                    <li className="comment-preview" key={utilService.makeId()}>
                         <h4>{comment.mail}</h4>
                         <p>{comment.msg}</p>
                         <img src={comment.ImgUrl} alt="" />

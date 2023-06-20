@@ -7,14 +7,14 @@ const {ObjectId} = mongodb
 
 async function query() {
     try {
-      const collection = await dbService.getCollection('msgs');
-      const commentCursor = await collection.find();
+      const collection = await dbService.getCollection('comment')
+      const commentCursor = await collection.find()
   
-      const comments = await commentCursor.toArray();
+      const comments = await commentCursor.toArray()
       return comments;
     } catch (err) {
-      logger.error('cannot find comments', err);
-      throw err;
+      logger.error('cannot find comments', err)
+      throw err
     }
   }
 
@@ -38,9 +38,9 @@ async function remove(commentId) {
 async function add(comment) {
     try {
         const commentToAdd = {
-            // byUserId: ObjectId(comment.byUserId),
-            // aboutUserId: ObjectId(comment.aboutUserId),
-            msg: comment.txt
+            msg: comment.msg,
+            mail: comment.mail,
+            imgUrl: comment.imgUrl
         }
         const collection = await dbService.getCollection('comment')
         await collection.insertOne(commentToAdd)
