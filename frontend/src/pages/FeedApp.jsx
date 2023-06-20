@@ -13,7 +13,7 @@ export function FeedApp() {
     return (
         <div className="feed-container">
             <FeedForm />
-            <input type="text" value={filterBy} onChange={handleChange} />
+            <input className='filter' placeholder='search..' type="text" value={filterBy} onChange={handleChange} />
             <FeedList filterBy={filterBy} />
         </div>
     )

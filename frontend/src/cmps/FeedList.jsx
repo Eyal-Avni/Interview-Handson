@@ -1,16 +1,23 @@
 import { useSelector } from 'react-redux'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { loadComments } from '../store/comment.actions.js'
 import { utilService } from '../services/util.service.js'
+import { SET_COMMENTS } from '../store/comment.reducer.js'
+import { SET_LIST, socketService } from '../services/socket.service.js'
+import { store } from '../store/store.js'
 
 export function FeedList({ filterBy }) {
-    const comments = useSelector(
-        (storeState) => storeState.commentModule.comments
-    )
-
+    
+    const comments = useSelector((storeState) => storeState.commentModule.comments)
 
     useEffect(() => {
         onLoadComments(filterBy)
+        socketService.on(SET_LIST, (list) => {
+            store.dispatch({ type: SET_COMMENTS, list })
+        })
+        return () => {
+            socketService.off(SET_LIST)
+        }
     }, [filterBy])
 
     async function onLoadComments(filterBy) {

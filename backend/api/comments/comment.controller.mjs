@@ -6,7 +6,7 @@ import {commentService} from './comment.service.mjs'
 export async function getComments(req, res) {
     try {
         const comments = await commentService.query(req.query)
-        console.log('comments: ', comments )
+        socketService.broadcast({ type: "update-list", data: comments })
         res.send(comments)
     } catch (err) {
         logger.error('Cannot get comments', err)

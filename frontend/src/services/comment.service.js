@@ -13,10 +13,10 @@ function query(filterBy) {
     // return storageService.query('comment')
 }
 
-// async function remove(CommentId) {
-//     // await httpService.delete(`Comment/${CommentId}`)
-//     await storageService.remove('Comment', CommentId)
-// }
+async function remove(CommentId) {
+    await httpService.delete(`Comment/${CommentId}`)
+    // await storageService.remove('Comment', CommentId)
+}
 
 async function add(comment) {
     try {
