@@ -26,20 +26,18 @@ if (process.env.NODE_ENV === 'production') {
     app.use(cors(corsOptions))
 }
 
-import { authRoutes } from './api/auth/auth.routes.mjs'
-import { userRoutes } from './api/user/user.routes.mjs'
-import { reviewRoutes } from './api/review/review.routes.mjs'
-import { carRoutes } from './api/car/car.routes.mjs'
+// import { authRoutes } from './api/auth/auth.routes.mjs'
+// import { userRoutes } from './api/user/user.routes.mjs'
+import { commentRoutes } from './api/comments/comment.routes.mjs'
 import { setupSocketAPI } from './services/socket.service.mjs'
 
 // routes
 import { setupAsyncLocalStorage } from './middlewares/setupAls.middleware.mjs'
 app.all('*', setupAsyncLocalStorage)
 
-app.use('/api/auth', authRoutes)
-app.use('/api/user', userRoutes)
-app.use('/api/review', reviewRoutes)
-app.use('/api/car', carRoutes)
+// app.use('/api/auth', authRoutes)
+// app.use('/api/user', userRoutes)
+app.use('/api/comment', commentRoutes)
 setupSocketAPI(server)
 
 // Make every server-side-route to match the index.html
