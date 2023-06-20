@@ -1,10 +1,13 @@
-import { useRef } from 'react'
+import { useRef, useState } from 'react'
 import { addComment } from '../store/comment.actions.js'
 import { MD5 } from 'crypto-js'
 
 export function FeedForm() {
     const mailRef = useRef(null)
     const msgRef = useRef(null)
+    
+
+
 
     async function hadleSubmit(ev) {
         ev.preventDefault()

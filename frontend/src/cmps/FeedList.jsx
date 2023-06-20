@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { loadComments } from '../store/comment.actions.js'
 import { utilService } from '../services/util.service.js'
 
@@ -7,6 +7,7 @@ export function FeedList() {
     const comments = useSelector(
         (storeState) => storeState.commentModule.comments
     )
+
 
     useEffect(() => {
         onLoadComments()
