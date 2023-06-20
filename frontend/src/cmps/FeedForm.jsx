@@ -5,13 +5,10 @@ import { MD5 } from 'crypto-js'
 export function FeedForm() {
     const mailRef = useRef(null)
     const msgRef = useRef(null)
-    
-
-
 
     async function hadleSubmit(ev) {
         ev.preventDefault()
-        if (!mailRef.current.value || !msgRef.current.valu) return
+        if (!mailRef.current.value || !msgRef.current.value) return
         const hashedEmail = MD5(mailRef.current.value).toString()
         const currComment = {
             mail: mailRef.current.value,
