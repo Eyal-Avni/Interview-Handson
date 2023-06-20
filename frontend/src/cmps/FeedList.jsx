@@ -3,25 +3,24 @@ import { useEffect, useState } from 'react'
 import { loadComments } from '../store/comment.actions.js'
 import { utilService } from '../services/util.service.js'
 
-export function FeedList() {
+export function FeedList({ filterBy }) {
     const comments = useSelector(
         (storeState) => storeState.commentModule.comments
     )
 
 
     useEffect(() => {
-        onLoadComments()
-    }, [])
+        onLoadComments(filterBy)
+    }, [filterBy])
 
-    async function onLoadComments() {
+    async function onLoadComments(filterBy) {
         try {
-            await loadComments()
-            console.log(comments)
+            await loadComments(filterBy)
         } catch (err) {
             console.log('Cannot load commnts')
         }
     }
-
+    if (!comments) return null
     return (
         <div className="feed-list-container">
             <ul className="comment-list">

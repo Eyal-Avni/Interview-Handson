@@ -13,10 +13,16 @@ export function getActionAddComment(comment) {
 //     return { type: SET_WATCHED_USER, user }
 // }
 
-export async function loadComments() {
+export async function loadComments(filterBy = '') {
     try {
+        console.log('filterBy: ', filterBy )
         const comments = await commentService.query()
-        store.dispatch({ type: SET_COMMENTS, comments })
+        const filteredComments = comments.filter(comment => {
+            const regex = new RegExp(filterBy, 'i')
+            return regex.test(comment.msg)
+        })
+        console.log('filteredComments: ', filteredComments )
+        store.dispatch({ type: SET_COMMENTS, filteredComments })
     } catch (err) {
         console.log('commentActions: err in loadComments', err)
         throw err
