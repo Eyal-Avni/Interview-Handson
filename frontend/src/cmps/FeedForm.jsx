@@ -5,12 +5,10 @@ import { MD5 } from 'crypto-js'
 export function FeedForm() {
     const mailRef = useRef(null)
     const msgRef = useRef(null)
-    
-
-
 
     async function hadleSubmit(ev) {
         ev.preventDefault()
+        if (!mailRef.current.value || !msgRef.current.value) return
         const hashedEmail = MD5(mailRef.current.value).toString()
         const currComment = {
             mail: mailRef.current.value,
@@ -30,7 +28,7 @@ export function FeedForm() {
     return (
         <div className="feed-form-container">
             <form onSubmit={hadleSubmit}>
-                <input type="text" placeholder="Email" ref={mailRef} />
+                <input type="email" placeholder="Email" ref={mailRef} />
                 <textarea placeholder="Message" ref={msgRef}></textarea>
                 <button>Submit</button>
             </form>
