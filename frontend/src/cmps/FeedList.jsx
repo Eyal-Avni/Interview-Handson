@@ -22,17 +22,16 @@ export function FeedList() {
         }
     }
 
-
-    
-
     return (
         <div className="feed-list-container">
             <ul className="comment-list">
                 {comments.map((comment) => (
                     <li className="comment-preview" key={utilService.makeId()}>
-                        <h4>{comment.mail}</h4>
-                        <p>{comment.msg}</p>
                         <img src={comment.ImgUrl} alt="" />
+                        <div className="comment-content">
+                            <h4>{comment.mail}</h4>
+                            <p>{comment.msg}</p>
+                        </div>
                     </li>
                 ))}
             </ul>
